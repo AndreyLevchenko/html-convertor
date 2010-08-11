@@ -1,4 +1,4 @@
-package builder.writer;
+package simplehtmlconverter.writer;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.Paragraph;

@@ -1,11 +1,10 @@
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import builder.DomTreeProcessor;
+import simplehtmlconverter.SimplyHtmlConvertor;
 
 public class test3 {
 	public static void main(String args[]) throws Exception {
@@ -17,7 +16,7 @@ public class test3 {
 		FileInputStream fis = new FileInputStream(new File(args[0]));
 
 		// Parse
-		new DomTreeProcessor().processDomTree(fis, new File(args[1]));
+		new SimplyHtmlConvertor().convert(fis, new File(args[1]));
 
 	}
 

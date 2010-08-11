@@ -1,4 +1,4 @@
-package builder.writer;
+package simplehtmlconverter.writer;
 
 import java.io.File;
 

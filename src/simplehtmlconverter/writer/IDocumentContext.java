@@ -1,9 +1,9 @@
-package builder.writer;
+package simplehtmlconverter.writer;
 
-import builder.writer.info.ParagraphInfo;
-import builder.writer.info.RangeInfo;
+import simplehtmlconverter.writer.info.ParagraphInfo;
+import simplehtmlconverter.writer.info.RangeInfo;
 
-public interface DocumentContext {
+public interface IDocumentContext {
 
 	public abstract ParagraphInfo getParagraphInfo();
 
@@ -18,4 +18,6 @@ public interface DocumentContext {
 	public void popRangeInfo();
 	public void pushRangeInfo();
 
+	public void popParagraphInfo();
+	public void pushParagraphInfo();
 }

@@ -1,4 +1,4 @@
-package builder.writer;
+package simplehtmlconverter.writer;
 
 import java.io.File;
 import java.math.BigInteger;
@@ -18,16 +18,17 @@ import org.docx4j.wml.PPrBase.Ind;
 import org.docx4j.wml.PPrBase.Spacing;
 import org.w3c.dom.Node;
 
-import builder.writer.info.ParagraphInfo;
+import simplehtmlconverter.util.HtmlUtil;
+import simplehtmlconverter.writer.info.ParagraphInfo;
 
 public class Docx4jDocumentWriter implements IDocumentWriter {
 	private Docx4jDocumentContext documentContext;
 
-	public DocumentContext getDocumentContext() {
-		return (DocumentContext) documentContext;
+	public IDocumentContext getDocumentContext() {
+		return (IDocumentContext) documentContext;
 	}
 
-	public void setDocumentContext(DocumentContext documentContext) {
+	public void setDocumentContext(IDocumentContext documentContext) {
 		this.documentContext = (Docx4jDocumentContext) documentContext;
 	}
 
@@ -41,7 +42,8 @@ public class Docx4jDocumentWriter implements IDocumentWriter {
 		PPr ppr = documentContext.getFactory().createPPr();
 		documentContext.setPpr(ppr);
 		ppr.setSpacing(new Spacing());
-		ppr.getSpacing().setAfter(new BigInteger("10"));
+		ppr.getSpacing().setAfter(new BigInteger("150"));
+		p.setPPr(ppr);
 		documentContext.getMainDocumentPart().addObject(documentContext.getP());
 		
 	}
@@ -66,7 +68,7 @@ public class Docx4jDocumentWriter implements IDocumentWriter {
 		documentContext.getP().getParagraphContent().add(run);
 
 		org.docx4j.wml.Text t = documentContext.getFactory().createText();
-		t.setValue(text);
+		t.setValue(HtmlUtil.decodeHTMLEntities(text));
 		run.getRunContent().add(t);
 
 		run.setRPr(documentContext.getRpr());
@@ -77,6 +79,7 @@ public class Docx4jDocumentWriter implements IDocumentWriter {
 	public void setPharagraphSettings(Node node) {
 		Double leftIndent = documentContext.getParagraphInfo().getIndentationLeft();
 		if (leftIndent != null) {
+			leftIndent*=20;
 			Ind ind = new Ind();
 			ind.setLeft(new BigInteger(Integer.toString(leftIndent.intValue())));
 			documentContext.getPpr().setInd(ind);

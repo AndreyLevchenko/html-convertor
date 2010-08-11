@@ -1,4 +1,4 @@
-package builder.writer;
+package simplehtmlconverter.writer;
 
 import java.io.File;
 
@@ -6,8 +6,8 @@ import org.w3c.dom.Node;
 
 
 public interface IDocumentWriter {
-	public DocumentContext getDocumentContext();
-	public void setDocumentContext(DocumentContext documentContext);
+	public IDocumentContext getDocumentContext();
+	public void setDocumentContext(IDocumentContext documentContext);
 	public void addSoftLineBreak(Node node);
 	public void addParagraphToDoc(Node node);
 	public void addPhraseToParagraph(Node node);

@@ -1,19 +1,19 @@
-package builder.element;
+package simplehtmlconverter.element;
 
 import org.w3c.dom.Node;
 
-import builder.writer.DocumentContext;
-import builder.writer.info.ParagraphInfo;
+import simplehtmlconverter.writer.IDocumentContext;
+import simplehtmlconverter.writer.info.ParagraphInfo;
 
 
-public class HeadingElementBuilder extends AbstractElementBuilder {
+public class HeadingElementBuilder extends DefaultContainerElementBuilder {
 	@Override
-	protected void modifyParagraph(Node node, DocumentContext documentContext){
+	protected void modifyParagraph(Node node, IDocumentContext documentContext){
 		super.modifyParagraph(node, documentContext);
 		documentContext.getParagraphInfo().setAlignment(ParagraphInfo.ALIGNMENT_CENTER);
 	}
 	@Override
-	protected void modifyPhrase(Node node, DocumentContext documentContext) {
+	protected void modifyPhrase(Node node, IDocumentContext documentContext) {
 		super.modifyPhrase(node, documentContext);
 		documentContext.getRangeInfo().setFontSize(14);
 		documentContext.getRangeInfo().setBold(true);

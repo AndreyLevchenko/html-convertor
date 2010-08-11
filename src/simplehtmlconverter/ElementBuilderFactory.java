@@ -1,4 +1,4 @@
-package builder;
+package simplehtmlconverter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,18 +6,18 @@ import java.util.Map;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import builder.element.AbstractElementBuilder;
-import builder.element.BlockQuoteElementBuilder;
-import builder.element.BoldElementBuilder;
-import builder.element.BrElementBuilder;
-import builder.element.CenterElementBuilder;
-import builder.element.ElementBuilder;
-import builder.element.HeadingElementBuilder;
-import builder.element.ItalicElementBuilder;
-import builder.element.ParagraphElementBuilder;
-import builder.element.SmallElementBuilder;
-import builder.element.SuperScriptElementBuilder;
-import builder.element.TextElementBuilder;
+import simplehtmlconverter.element.DefaultContainerElementBuilder;
+import simplehtmlconverter.element.BlockQuoteElementBuilder;
+import simplehtmlconverter.element.BoldElementBuilder;
+import simplehtmlconverter.element.BrElementBuilder;
+import simplehtmlconverter.element.CenterElementBuilder;
+import simplehtmlconverter.element.ElementBuilder;
+import simplehtmlconverter.element.HeadingElementBuilder;
+import simplehtmlconverter.element.ItalicElementBuilder;
+import simplehtmlconverter.element.ParagraphElementBuilder;
+import simplehtmlconverter.element.SmallElementBuilder;
+import simplehtmlconverter.element.SuperScriptElementBuilder;
+import simplehtmlconverter.element.TextElementBuilder;
 
 
 public class ElementBuilderFactory {
@@ -43,7 +43,7 @@ public class ElementBuilderFactory {
 			elementBuilder=elementBuilders.get(nodeType);
 			System.out.println(nodeType);
 		}else {
-			elementBuilder=new AbstractElementBuilder();
+			elementBuilder=new DefaultContainerElementBuilder();
 			System.out.println(nodeType+"(default)");
 		}
 		return elementBuilder;

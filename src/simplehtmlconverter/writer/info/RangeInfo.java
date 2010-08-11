@@ -1,4 +1,4 @@
-package builder.writer.info;
+package simplehtmlconverter.writer.info;
 
 public class RangeInfo implements Cloneable {
 	private String fontName;

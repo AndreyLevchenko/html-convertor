@@ -1,4 +1,4 @@
-package builder.writer.info;
+package simplehtmlconverter.writer.info;
 
 public class ParagraphInfo implements Cloneable {
 	public static final int ALIGNMENT_LEFT = 0;

@@ -1,14 +1,14 @@
-package builder.element;
+package simplehtmlconverter.element;
 
 
 import org.w3c.dom.Node;
 
-import builder.writer.DocumentContext;
+import simplehtmlconverter.writer.IDocumentContext;
 
-public class SuperScriptElementBuilder extends AbstractElementBuilder {
+public class SuperScriptElementBuilder extends DefaultContainerElementBuilder {
 
 	@Override
-	protected void modifyPhrase(Node node, DocumentContext documentContext){
+	protected void modifyPhrase(Node node, IDocumentContext documentContext){
 		super.modifyPhrase(node, documentContext);
 /*		Chunk ch = new Chunk();
 		ch.setTextRise(10);

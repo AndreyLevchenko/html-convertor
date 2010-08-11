@@ -1,14 +1,16 @@
-package builder.writer;
+package simplehtmlconverter.writer;
 
 import java.util.Stack;
 
-import builder.writer.info.ParagraphInfo;
-import builder.writer.info.RangeInfo;
+import simplehtmlconverter.writer.info.ParagraphInfo;
+import simplehtmlconverter.writer.info.RangeInfo;
 
-public abstract class AbstractDocumentContext implements DocumentContext {
+public abstract class AbstractDocumentContext implements IDocumentContext {
 	private ParagraphInfo paragraphInfo = new ParagraphInfo();
 	private RangeInfo rangeInfo = new RangeInfo();
+
 	private Stack<RangeInfo> rangeInfoStack = new Stack<RangeInfo>();
+	private Stack<ParagraphInfo> paragraphInfoStack = new Stack<ParagraphInfo>();
 
 	public void popRangeInfo() {
 		if (rangeInfoStack.size()>0) { 
@@ -27,6 +29,22 @@ public abstract class AbstractDocumentContext implements DocumentContext {
 		rangeInfoStack.push(storedRangeInfo);
 	}
 
+	public void popParagraphInfo() {
+		if (paragraphInfoStack.size()>0) { 
+			paragraphInfo=paragraphInfoStack.pop();
+		}
+	}
+
+	public void pushParagraphInfo() {
+		ParagraphInfo storedParagraphInfo=null;
+		try {
+			storedParagraphInfo = (ParagraphInfo )paragraphInfo.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		paragraphInfoStack.push(storedParagraphInfo);
+	}
 
 	/*
 	 * (non-Javadoc)

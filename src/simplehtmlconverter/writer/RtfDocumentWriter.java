@@ -1,4 +1,4 @@
-package builder.writer;
+package simplehtmlconverter.writer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +7,8 @@ import java.io.OutputStream;
 
 import org.w3c.dom.Node;
 
-import builder.writer.info.ParagraphInfo;
+import simplehtmlconverter.util.HtmlUtil;
+import simplehtmlconverter.writer.info.ParagraphInfo;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
@@ -19,11 +20,11 @@ import com.lowagie.text.rtf.direct.RtfDirectContent;
 public class RtfDocumentWriter implements IDocumentWriter {
 	private RtfDocumentContext documentContext;
 
-	public DocumentContext getDocumentContext() {
-		return (DocumentContext) documentContext;
+	public IDocumentContext getDocumentContext() {
+		return (IDocumentContext) documentContext;
 	}
 
-	public void setDocumentContext(DocumentContext documentContext) {
+	public void setDocumentContext(IDocumentContext documentContext) {
 		this.documentContext = (RtfDocumentContext) documentContext;
 	}
 
@@ -57,7 +58,7 @@ public class RtfDocumentWriter implements IDocumentWriter {
 	@Override
 	public void addText(String text) {
 		Phrase tmpPhrase=(Phrase)documentContext.getPhrase().clone();
-		tmpPhrase.add(text);
+		tmpPhrase.add(HtmlUtil.decodeHTMLEntities(text));
 		documentContext.getParagraph().add(tmpPhrase);
 	}
 
