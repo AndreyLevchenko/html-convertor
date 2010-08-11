@@ -11,20 +11,14 @@ import org.w3c.tidy.Tidy;
 import builder.element.ElementBuilder;
 import builder.writer.RtfDocumentContext;
 
-import com.lowagie.text.rtf.RtfWriter2;
-
 public class DomTreeProcessor {
 	RtfDocumentContext documentContext = new RtfDocumentContext();
 
 	public void processDomTree(InputStream is, OutputStream os) throws Exception {
-		// RtfWriter2 writer =
-		// RtfWriter2.getInstance(documentContext.getDocument(), os);
-		RtfWriter2.getInstance(documentContext.getDocument(), os);
-		documentContext.getDocument().open();
+		documentContext.getDocumentWriter().init(os);
 		Element root = loadDocument(is);
 		processDomElement(root, documentContext);
-		documentContext.getDocument().add(documentContext.getParagraph());
-		documentContext.getDocument().close();
+		documentContext.getDocumentWriter().close();
 	}
 
 	private Element loadDocument(InputStream is) throws Exception {

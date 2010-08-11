@@ -1,5 +1,7 @@
 package builder.writer;
 
+import java.io.OutputStream;
+
 import org.w3c.dom.Node;
 
 import builder.writer.info.ParagraphInfo;
@@ -8,6 +10,7 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
+import com.lowagie.text.rtf.RtfWriter2;
 import com.lowagie.text.rtf.direct.RtfDirectContent;
 
 public class RtfDocumentWriter implements IDocumentWriter {
@@ -68,24 +71,44 @@ public class RtfDocumentWriter implements IDocumentWriter {
 
 	@Override
 	public void setPhraseSettings(Node node) {
-		documentContext.setPhrase(new Phrase()); 
+		documentContext.setPhrase(new Phrase());
 		Font font = documentContext.getPhrase().getFont();
 		if (documentContext.getRangeInfo().getBold()) {
 			font.setStyle(Font.BOLD);
 		} else {
-//			int currentStyle = font.getStyle();
-//			font.setStyle(currentStyle & ~Font.BOLD);
+			// TODO use inversion of Bold
+			// int currentStyle = font.getStyle();
+			// font.setStyle(currentStyle & ~Font.BOLD);
 			font.setStyle(Font.NORMAL);
 		}
 
 		if (documentContext.getRangeInfo().getItalic() != null && documentContext.getRangeInfo().getItalic()) {
 			font.setStyle(Font.ITALIC);
+		} else {
+			// TODO use inversion of Bold
 		}
 		Integer fontSize = documentContext.getRangeInfo().getFontSize();
 		if (fontSize != null) {
 			font.setSize(fontSize);
 		}
 
+	}
+
+	@Override
+	public void close() {
+		try {
+			documentContext.getDocument().add(documentContext.getParagraph());
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		documentContext.getDocument().close();
+	}
+
+	@Override
+	public void init(OutputStream os) {
+		RtfWriter2.getInstance(documentContext.getDocument(), os);
+		documentContext.getDocument().open();
 	}
 
 }

@@ -3,6 +3,7 @@ package builder.element;
 import org.w3c.dom.Node;
 
 import builder.writer.DocumentContext;
+import builder.writer.info.ParagraphInfo;
 
 import com.lowagie.text.DocumentException;
 
@@ -12,6 +13,7 @@ public class AbstractElementBuilder implements ElementBuilder {
 	public void process(Node node, DocumentContext context) throws DocumentException {
 		if (isParagraph()) {
 			context.getDocumentWriter().addParagraphToDoc(node);
+			context.setParagraphInfo(new ParagraphInfo());
 			modifyParagraph(node, context);
 			context.getDocumentWriter().setPharagraphSettings(node);
 		}
