@@ -1,5 +1,8 @@
 package builder.writer;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 import org.w3c.dom.Node;
@@ -106,8 +109,15 @@ public class RtfDocumentWriter implements IDocumentWriter {
 	}
 
 	@Override
-	public void init(OutputStream os) {
-		RtfWriter2.getInstance(documentContext.getDocument(), os);
+	public void init(File outputFile) {
+		OutputStream outputStream=null;
+		try {
+			outputStream = new FileOutputStream(outputFile);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		RtfWriter2.getInstance(documentContext.getDocument(), outputStream);
 		documentContext.getDocument().open();
 	}
 

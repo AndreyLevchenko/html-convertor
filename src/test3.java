@@ -15,10 +15,9 @@ public class test3 {
 		}
 
 		FileInputStream fis = new FileInputStream(new File(args[0]));
-		FileOutputStream fos = new FileOutputStream(new File(args[1]));
 
 		// Parse
-		new DomTreeProcessor().processDomTree(fis, fos);
+		new DomTreeProcessor().processDomTree(fis, new File(args[1]));
 
 	}
 

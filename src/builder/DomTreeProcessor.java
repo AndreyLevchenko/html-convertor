@@ -1,7 +1,7 @@
 package builder;
 
+import java.io.File;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -9,13 +9,15 @@ import org.w3c.dom.Node;
 import org.w3c.tidy.Tidy;
 
 import builder.element.ElementBuilder;
-import builder.writer.RtfDocumentContext;
+import builder.writer.DocumentContext;
+import builder.writer.Docx4jDocumentContext;
 
 public class DomTreeProcessor {
-	RtfDocumentContext documentContext = new RtfDocumentContext();
+//	RtfDocumentContext documentContext = new RtfDocumentContext();
+	Docx4jDocumentContext documentContext = new Docx4jDocumentContext();
 
-	public void processDomTree(InputStream is, OutputStream os) throws Exception {
-		documentContext.getDocumentWriter().init(os);
+	public void processDomTree(InputStream is, File outputFile) throws Exception {
+		documentContext.getDocumentWriter().init(outputFile);
 		Element root = loadDocument(is);
 		processDomElement(root, documentContext);
 		documentContext.getDocumentWriter().close();
@@ -35,7 +37,7 @@ public class DomTreeProcessor {
 		}
 	}
 
-	void processDomElement(Node node, RtfDocumentContext documentContext) throws Exception {
+	void processDomElement(Node node, DocumentContext documentContext) throws Exception {
 		ElementBuilder elementBuilder = ElementBuilderFactory.getElementBuilder(node);
 		elementBuilder.process(node, documentContext);
 		for (int i = 0; i < node.getChildNodes().getLength(); i++) {
