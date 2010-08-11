@@ -10,11 +10,12 @@ public class DefaultContainerElementBuilder implements ElementBuilder {
 
 	@Override
 	public void process(Node node, IDocumentContext context) throws DocumentException {
-		if (isParagraph()) {
+		if (isParagraph()||!context.hasActiveParagraph()) {
 			context.getDocumentWriter().addParagraphToDoc(node);
 			context.pushParagraphInfo();
 			modifyParagraph(node, context);
 			context.getDocumentWriter().setPharagraphSettings(node);
+			context.setHasActiveParagraph(true);
 		}
 
 		context.pushRangeInfo();
@@ -26,6 +27,7 @@ public class DefaultContainerElementBuilder implements ElementBuilder {
 		documentContext.popRangeInfo();
 		if (isParagraph()) {
 			documentContext.popParagraphInfo();
+			documentContext.setHasActiveParagraph(false);
 		}
 	}
 

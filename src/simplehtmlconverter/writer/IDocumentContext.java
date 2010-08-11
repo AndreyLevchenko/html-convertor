@@ -20,4 +20,7 @@ public interface IDocumentContext {
 
 	public void popParagraphInfo();
 	public void pushParagraphInfo();
+	
+	public void setHasActiveParagraph(boolean hasActiveParagraph);
+	public boolean hasActiveParagraph();
 }

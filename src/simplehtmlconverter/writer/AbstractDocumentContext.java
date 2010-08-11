@@ -11,6 +11,7 @@ public abstract class AbstractDocumentContext implements IDocumentContext {
 
 	private Stack<RangeInfo> rangeInfoStack = new Stack<RangeInfo>();
 	private Stack<ParagraphInfo> paragraphInfoStack = new Stack<ParagraphInfo>();
+	private boolean hasActiveParagraph=true;
 
 	public void popRangeInfo() {
 		if (rangeInfoStack.size()>0) { 
@@ -86,4 +87,12 @@ public abstract class AbstractDocumentContext implements IDocumentContext {
 	}
 
 	public abstract IDocumentWriter getDocumentWriter();
+
+	public void setHasActiveParagraph(boolean hasActiveParagraph) {
+		this.hasActiveParagraph = hasActiveParagraph;
+	}
+
+	public boolean hasActiveParagraph() {
+		return hasActiveParagraph;
+	}
 }
