@@ -3,15 +3,14 @@ package builder.element;
 
 import org.w3c.dom.Node;
 
-import builder.AbstractElementBuilder;
-import builder.DocumentContext;
+import builder.writer.RtfDocumentContext;
 
 import com.lowagie.text.Chunk;
 
 public class SuperScriptElementBuilder extends AbstractElementBuilder {
 
 	@Override
-	protected void modifyPhrase(Node node, DocumentContext documentContext){
+	protected void modifyPhrase(Node node, RtfDocumentContext documentContext){
 		super.modifyPhrase(node, documentContext);
 		Chunk ch = new Chunk();
 		ch.setTextRise(10);

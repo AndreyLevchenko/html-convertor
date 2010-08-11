@@ -1,6 +1,5 @@
 package builder.element;
 
-import builder.AbstractElementBuilder;
 
 
 public class ParagraphElementBuilder extends AbstractElementBuilder {

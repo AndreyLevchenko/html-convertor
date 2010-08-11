@@ -8,11 +8,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.tidy.Tidy;
 
+import builder.element.ElementBuilder;
+import builder.writer.RtfDocumentContext;
+
 import com.lowagie.text.Phrase;
 import com.lowagie.text.rtf.RtfWriter2;
 
 public class DomTreeProcessor {
-	DocumentContext documentContext = new DocumentContext();  
+	RtfDocumentContext documentContext = new RtfDocumentContext();  
 	public void processDomTree(InputStream is, OutputStream  os) throws Exception{
 //		RtfWriter2 writer = RtfWriter2.getInstance(documentContext.getDocument(), os);
 		RtfWriter2.getInstance(documentContext.getDocument(), os);
@@ -36,7 +39,7 @@ public class DomTreeProcessor {
 			throw new Exception(se.getMessage());
 		}
 	}	
-		void processDomElement(Node node, DocumentContext documentContext) throws Exception{
+		void processDomElement(Node node, RtfDocumentContext documentContext) throws Exception{
 			Phrase storedPhrase=documentContext.getPhrase();
 			ElementBuilder elementBuilder = ElementBuilderFactory.getElementBuilder(node);
 			elementBuilder.process(node,documentContext);

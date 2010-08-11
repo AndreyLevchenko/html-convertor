@@ -6,10 +6,12 @@ import java.util.Map;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import builder.element.AbstractElementBuilder;
 import builder.element.BlockQuoteElementBuilder;
 import builder.element.BoldElementBuilder;
 import builder.element.BrElementBuilder;
 import builder.element.CenterElementBuilder;
+import builder.element.ElementBuilder;
 import builder.element.HeadingElementBuilder;
 import builder.element.ItalicElementBuilder;
 import builder.element.ParagraphElementBuilder;

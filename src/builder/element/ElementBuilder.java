@@ -1,6 +1,8 @@
-package builder;
+package builder.element;
 
 import org.w3c.dom.Node;
+
+import builder.writer.DocumentContext;
 
 import com.lowagie.text.DocumentException;
 

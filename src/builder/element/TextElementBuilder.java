@@ -2,8 +2,7 @@ package builder.element;
 
 import org.w3c.dom.Node;
 
-import builder.AbstractElementBuilder;
-import builder.DocumentContext;
+import builder.writer.DocumentContext;
 
 import com.lowagie.text.Phrase;
 

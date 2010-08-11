@@ -1,10 +1,10 @@
-package builder;
+package builder.writer;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
 
-public class DocumentContext {
+public class RtfDocumentContext extends AbstractDocumentContext  {
 	private Document document=new Document();
 	private Paragraph paragraph;
 	private Phrase phrase = new Phrase();
