@@ -3,17 +3,14 @@ package builder.element;
 
 import org.w3c.dom.Node;
 
-import builder.writer.RtfDocumentContext;
-
-import com.lowagie.text.Font;
+import builder.writer.DocumentContext;
 
 public class ItalicElementBuilder extends AbstractElementBuilder {
 
 	@Override
-	protected void modifyPhrase(Node node, RtfDocumentContext documentContext){
+	protected void modifyPhrase(Node node, DocumentContext documentContext){
 		super.modifyPhrase(node, documentContext);
-		Font font = documentContext.getPhrase().getFont();
-		font.setStyle(Font.ITALIC);
+		documentContext.getRangeInfo().setItalic(true);
 	}
 
 }

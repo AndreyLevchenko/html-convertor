@@ -3,11 +3,11 @@ package builder.writer.info;
 public class RangeInfo implements Cloneable {
 	private String fontName;
 	private Integer fontSize;
-	private Boolean bold;
-	private Boolean italic;
-	private Boolean underline;
-	private Boolean subscript;
-	private Boolean superscript;
+	private Boolean bold = false;
+	private Boolean italic = false;
+	private Boolean underline = false;
+	private Boolean subscript = false;
+	private Boolean superscript = false;
 	public String getFontName() {
 		return fontName;
 	}
@@ -49,5 +49,8 @@ public class RangeInfo implements Cloneable {
 	}
 	public void setSuperscript(Boolean superscript) {
 		this.superscript = superscript;
+	}
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }

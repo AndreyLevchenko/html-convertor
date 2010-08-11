@@ -3,32 +3,28 @@ package builder.element;
 import org.w3c.dom.Node;
 
 import builder.writer.DocumentContext;
-import builder.writer.RtfDocumentContext;
 
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
 
 public class AbstractElementBuilder implements ElementBuilder {
 
 	@Override
 	public void process(Node node, DocumentContext context) throws DocumentException {
-		if (isParagraph() || context.getParagraph() == null) {
-			if (context.getParagraph() != null) {
-				context.getDocument().add(context.getParagraph());
-			}
-			Paragraph p = new Paragraph();
-			p.setSpacingAfter(10);
-			context.setParagraph(p);
+		if (isParagraph()) {
+			context.getDocumentWriter().addParagraphToDoc(node);
+			modifyParagraph(node, context);
+			context.getDocumentWriter().setPharagraphSettings(node);
 		}
-		modifyParagraph(node, context);
 
-		context.setPhrase(new Phrase());
-		
+		context.pushRangeInfo();
 		modifyPhrase(node, context);
+		context.getDocumentWriter().setPhraseSettings(node);
+	}
+	public void afterProcessChilds(Node node, DocumentContext documentContext){
+		documentContext.popRangeInfo();
 	}
 
-	protected void modifyParagraph(Node node, DocumentContext documentContext) throws DocumentException {
+	protected void modifyParagraph(Node node, DocumentContext documentContext){
 	}
 
 	protected void modifyPhrase(Node node, DocumentContext documentContext) {

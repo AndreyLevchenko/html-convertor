@@ -6,8 +6,15 @@ import com.lowagie.text.Phrase;
 
 public class RtfDocumentContext extends AbstractDocumentContext  {
 	private Document document=new Document();
-	private Paragraph paragraph;
+	private Paragraph paragraph=new Paragraph();
 	private Phrase phrase = new Phrase();
+	
+	private RtfDocumentWriter documentWriter = new RtfDocumentWriter();
+	
+	public RtfDocumentContext(){
+		documentWriter.setDocumentContext(this);
+	}
+
 	public Document getDocument() {
 		return document;
 	}
@@ -26,4 +33,8 @@ public class RtfDocumentContext extends AbstractDocumentContext  {
 	public void setPhrase(Phrase phrase) {
 		this.phrase = phrase;
 	}
+	public IDocumentWriter getDocumentWriter() {
+		return documentWriter;
+	}
+	
 }

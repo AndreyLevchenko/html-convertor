@@ -41,6 +41,7 @@ public class ElementBuilderFactory {
 		String nodeType=node.getNodeName();
 		if (elementBuilders.containsKey(nodeType)) {
 			elementBuilder=elementBuilders.get(nodeType);
+			System.out.println(nodeType);
 		}else {
 			elementBuilder=new AbstractElementBuilder();
 			System.out.println(nodeType+"(default)");
